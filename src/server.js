@@ -8,4 +8,15 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
-module.exports = app;
+app.use('/')
+
+app.get('*', (req, res) => {
+  res.status(404).json({
+    status: 'fail',
+    data: {
+      resource: 'Not found'
+    }
+  })
+})
+
+export default app
