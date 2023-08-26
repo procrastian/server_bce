@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Directory {
+  id            Int        @id @default(autoincrement())
+  courses       Course[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model Course {
+  id            Int        @id @default(autoincrement())
+  directories   Directory[]
+  title         String
+  description   String
+  length        Int
+  startDates    DateTime[]
+  coverImage    String
+  tags          Tags[]
+  users         User[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model User {
+  id            Int        @id @default(autoincrement())
+  courses       Course[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+enum Tags {
+  Meditation
+  Mindfullness
+  UnderFive
+  PrimaryAge
+  SecondaryAge
+}
+// model XXX {
+//   id            Int        @id @default(autoincrement())
+//   createdAt     DateTime   @default(now())
+//   updatedAt     DateTime   @updatedAt
+// }
