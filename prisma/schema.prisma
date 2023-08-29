@@ -34,9 +34,9 @@ model Course {
 
 model User {
   id              Int           @id @default(autoincrement())
-  courses         Course[]
   email           String        @unique
   password        String
+  courses         Course[]
   contact         Contact?
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
@@ -68,8 +68,3 @@ enum Tags {
   PrimaryAge
   SecondaryAge
 }
-// model XXX {
-//   id              Int            @id @default(autoincrement())
-//   createdAt       DateTime       @default(now())
-//   updatedAt       DateTime       @updatedAt
-// }
