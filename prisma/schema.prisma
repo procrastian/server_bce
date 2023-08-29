@@ -24,7 +24,7 @@ model Course {
   title           String
   description     String
   length          Int
-  startDates      DateTime[]
+  startDates      String[]
   coverImage      String
   tags            Tags[]
   users           User[]
