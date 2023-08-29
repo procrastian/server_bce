@@ -12,31 +12,53 @@ datasource db {
 }
 
 model Directory {
-  id            Int        @id @default(autoincrement())
-  courses       Course[]
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  id              Int           @id @default(autoincrement())
+  courses         Course[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }
 
 model Course {
-  id            Int        @id @default(autoincrement())
-  directories   Directory[]
-  title         String
-  description   String
-  length        Int
-  startDates    DateTime[]
-  coverImage    String
-  tags          Tags[]
-  users         User[]
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  id              Int           @id @default(autoincrement())
+  directories     Directory[]
+  title           String
+  description     String
+  length          Int
+  startDates      DateTime[]
+  coverImage      String
+  tags            Tags[]
+  users           User[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }
 
 model User {
-  id            Int        @id @default(autoincrement())
-  courses       Course[]
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  id              Int           @id @default(autoincrement())
+  courses         Course[]
+  email           String        @unique
+  password        String
+  contact         Contact?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model Contact {
+  id              Int           @id @default(autoincrement())
+  userId          Int           @unique
+  User            User          @relation(fields: [userId], references: [id])
+  firstName       String
+  lastName        String
+  addressLine1    String
+  addressLine2    String
+  town            String
+  city            String
+  county          String
+  postcode        String
+  country         String
+  phoneNumber1    String
+  phoneNumber2    String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
 }
 
 enum Tags {
@@ -47,7 +69,7 @@ enum Tags {
   SecondaryAge
 }
 // model XXX {
-//   id            Int        @id @default(autoincrement())
-//   createdAt     DateTime   @default(now())
-//   updatedAt     DateTime   @updatedAt
+//   id              Int            @id @default(autoincrement())
+//   createdAt       DateTime       @default(now())
+//   updatedAt       DateTime       @updatedAt
 // }
