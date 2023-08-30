@@ -20,13 +20,13 @@ model Directory {
 
 model Course {
   id              Int           @id @default(autoincrement())
-  directories     Directory[]
   title           String
   description     String
   length          Int
-  startDates      String[]
+  startDate       String
   coverImage      String
   tags            Tags[]
+  directories     Directory[]
   users           User[]
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
