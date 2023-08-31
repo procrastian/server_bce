@@ -64,6 +64,7 @@ model Contact {
 enum Tags {
   Meditation
   Mindfullness
+  YogaPractice
   UnderFive
   PrimaryAge
   SecondaryAge
