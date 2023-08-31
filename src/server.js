@@ -1,6 +1,7 @@
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
+import express from 'express'
+import morgan from 'morgan'
+import cors from 'cors'
+import homeRouter from './routes/home.js'
 
 const app = express();
 
@@ -8,7 +9,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
-app.use('/')
+app.use('/', homeRouter)
 
 app.get('*', (req, res) => {
   res.status(404).json({
